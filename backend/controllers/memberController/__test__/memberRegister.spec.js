@@ -3,39 +3,6 @@ const {registerMember} = require('../../../controllers/memberController/memberRe
 
 jest.mock('../../../database/dbHelpers')
 describe('Creating a user ', () => {
-    it('should return an error when any of the fields is empty', async () => {
-        const mockedReq = {
-            body:{}
-        }
-        const mockedRes = {
-            status: jest.fn().mockReturnThis(),
-            json: jest.fn()
-        }
-        await   registerMember(mockedReq, mockedRes)
-        expect(mockedRes.status).toHaveBeenCalledWith(400)
-        expect(mockedRes.json).toHaveBeenCalledWith({message: "Please fill all fields"})
-
-
-    })
-    it('should return an a success when the email is valid',async () =>{
-        const mockedReq = {
-            body:{
-                fname: 'John',
-                lname: 'Doe',
-                email: 'john.doe@thejitu.com',
-                cohortTitle:'QA/QE',
-                cohortNumber: 17
-
-            }
-        }
-
-        const mockedRes = {
-            status: jest.fn().mockReturnThis(),
-            json: jest.fn()
-        }
-          await  registerMember(mockedReq, mockedRes)
-        expect(mockedRes.status).toHaveBeenCalledWith(400)
-    })
 
     it('should return an error when any of the fields is empty', async () => {
         const mockedReq = {
@@ -69,6 +36,7 @@ describe('Creating a user ', () => {
         }
           await  registerMember(mockedReq, mockedRes)
         expect(mockedRes.status).toHaveBeenCalledWith(400)
+        expect(mockedRes.json).toHaveBeenCalledWith({message: "invalid email"})
     })
 
 
