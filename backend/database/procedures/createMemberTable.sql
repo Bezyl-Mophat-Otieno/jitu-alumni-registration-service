@@ -14,4 +14,3 @@ BEGIN CATCH
     THROW 50000, 'An error occurred while creating the tables', 1;
 END CATCH;
 
-DROP TABLE IF EXISTS memberTable;
